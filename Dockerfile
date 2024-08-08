@@ -5,6 +5,8 @@ RUN groupadd -g 10014 choreo && \
     useradd --no-create-home --uid 10014 --gid choreo choreouser
 
 # RUN chown -R choreouser:choreo /usr/local/tomcat
+RUN chown -R 10014:choreo /usr/local/tomcat
+
 
 USER 10014
 
