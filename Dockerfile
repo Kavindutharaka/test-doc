@@ -1,5 +1,5 @@
 # Use a base image with Java and Tomcat installed
-FROM tomcat:9.0-jdk11
+FROM tomcat:9.0.91-jdk17
 
 RUN groupadd -g 10014 choreo && \
     useradd --no-create-home --uid 10014 --gid choreo choreouser
