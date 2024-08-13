@@ -17,9 +17,9 @@ ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 COPY target/oidc-sample-app.war $CATALINA_HOME/webapps/oidc-sample-app.war
-
-RUN unzip $CATALINA_HOME/webapps/oidc-sample-app.war -d $CATALINA_HOME/webapps/oidc-sample-app && rm $CATALINA_HOME/webapps/oidc-sample-app.war
 RUN ls -al $CATALINA_HOME/webapps/
+RUN unzip $CATALINA_HOME/webapps/oidc-sample-app.war -d $CATALINA_HOME/webapps/oidc-sample-app && rm $CATALINA_HOME/webapps/oidc-sample-app.war
+
 RUN ls -al $CATALINA_HOME/webapps/oidc-sample-app
 
 # USER root
