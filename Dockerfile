@@ -12,25 +12,24 @@ USER root
 RUN apt-get update && apt-get install -y unzip
 
 # Copy the WAR file into the container
-COPY target/oidc-sample-app.war /tmp/oidc-sample-app.war
+COPY target/oidc-sample-app.war /oidc-sample-app.war
 
 # Unzip the WAR file and remove the original WAR file
-RUN unzip /tmp/oidc-sample-app.war -d /tmp/oidc-sample-app && \
-    rm /tmp/oidc-sample-app.war
-
-# Copy the extracted files and logging.properties to their respective locations
-COPY oidc-sample-app $CATALINA_HOME/webapps/oidc-sample-app
-COPY logging.properties $CATALINA_HOME/conf/logging.properties
+RUN unzip /oidc-sample-app.war -d /usr/local/tomcat/webapps/oidc-sample-app
+RUN rm /oidc-sample-app.war
 
 # Change ownership of Tomcat directory to the non-root user
-RUN chown -R 10014:choreo /usr/local/tomcat
+RUN chown -R 10015:choreo /usr/local/tomcat
 
 # Switch to the non-root user
-USER 10014
+USER 10015
 
 # Set environment variables
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
+
+# Copy logging properties
+COPY logging.properties $CATALINA_HOME/conf/logging.properties
 
 # Expose the port on which Tomcat will run
 EXPOSE 8080
