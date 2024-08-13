@@ -14,9 +14,9 @@ RUN apt-get update && apt-get install -y unzip
 # Copy the WAR file into the container
 COPY target/oidc-sample-app.war /oidc-sample-app.war
 
-# Unzip the WAR file and remove the original WAR file
-RUN unzip /oidc-sample-app.war -d /usr/local/tomcat/webapps/oidc-sample-app
-RUN rm /oidc-sample-app.war
+# Unzip the WAR file into Tomcat webapps directory
+RUN unzip /oidc-sample-app.war -d /usr/local/tomcat/webapps/oidc-sample-app && \
+    rm /oidc-sample-app.war
 
 # Change ownership of Tomcat directory to the non-root user
 RUN chown -R 10015:choreo /usr/local/tomcat
