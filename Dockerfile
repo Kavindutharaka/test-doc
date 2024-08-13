@@ -23,11 +23,7 @@ RUN unzip $CATALINA_HOME/webapps/oidc-sample-app.war -d $CATALINA_HOME/webapps/o
 
 RUN ls -al $CATALINA_HOME/webapps/oidc-sample-app
 
-# USER root
-
-# RUN rm $CATALINA_HOME/webapps/oidc-sample-app/oidc-sample-app.war
-
-# USER 10015
+COPY oidc-sample-app.properties $CATALINA_HOME/webapps/oidc-sample-app/WEB-INF/classes/
 
 COPY logging.properties $CATALINA_HOME/conf/logging.properties
 
